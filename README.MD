@@ -3,7 +3,8 @@
 * GraphQL.Server.Transports.AspNetCore
 * GraphQL.Server.Ui.Playground
 * Microsoft.EntityFrameworkCore
-* Microsoft.EntityFrameworkCore.SqlServer
+* Microsoft.EntityFrameworkCore.SqlServer (Windows user)
+* Microsoft.EntityFrameworkCore.Sqlite (Mac user)
 
 # Startup.cs
 
