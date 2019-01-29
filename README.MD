@@ -1,13 +1,11 @@
-﻿# Markdown File
-
-# Nuget packages required for this project
+﻿# Nuget packages required for this project
 
 * GraphQL.Server.Transports.AspNetCore
 * GraphQL.Server.Ui.Playground
 * Microsoft.EntityFrameworkCore
 * Microsoft.EntityFrameworkCore.SqlServer
 
-# Startup 
+# Startup.cs
 
 ## Dependency Injection
 
