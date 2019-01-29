@@ -53,6 +53,51 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, GraphqlD
 }
 
 ```
+
+# How to use the project
+
+You must have the following installed
+
+## Prerequisite
+
+* ASP.NET Core SDK 2.2
+* MS SQL LocalDb (For Windows user)
+* SQL Lite (For Mac user)
+
+## Windows command prompt / Mac terminal
+
+1. Clone/Fork the solution to your local drive  
+  
+   >`git clone git@github.com:javafun/GraphqlPlayground.git`
+2. Change directory 
+   >`$ CD GraphqlPlayground`
+3. Run database migration 
+   >`dotnet ef database upgrade`
+4. Build and run solution
+   >`dotnet run`
+4. Open Graphql playground in browser
+   >`https://localhost:5001/ui/playground` 
+
+## Database
+>**NOTE:** Make sure you only uncomment one or the other service depends on the platform you use. 
+
+### Windows
+For Windows user, you can uncomment the following lines from `Startup.cs`
+
+```csharp
+
+services.AddDbContext<GraphqlDbContext>(options =>
+                 options.UseSqlServer(_config.GetConnectionString("GraphqlDemo")));
+            
+```
+### Mac SQL Lite
+For Mac user, you can uncomment the following lines from `Startup.cs`
+
+```csharp
+services.AddDbContext<GraphqlDbContext>(options=>
+                options.UseSqlite(_config.GetConnectionString("GraphqlDemoLite")));
+
+```
 # GraphQL playground
 
 Once dependency injection and middleware are configured, the playground can be access `<host>/ui/playground`
