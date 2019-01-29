@@ -10,7 +10,7 @@ namespace GraphqlDemo.GraphQL
         public GraphqlDemoQuery(ProductRepository productRepository)
         {
             Field<ListGraphType<ProductType>>(
-                "product",
+                "products",
                 resolve: context => productRepository.GetAll()
              );
         }
