@@ -62,7 +62,7 @@ namespace GraphqlDemo
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddScoped<GraphqlDemoSchema>();
 
-            services.AddGraphQL(o => { o.ExposeExceptions = false; })
+            services.AddGraphQL(o => { o.ExposeExceptions = true; })
                     .AddGraphTypes(ServiceLifetime.Scoped)
                     .AddDataLoader();
 
