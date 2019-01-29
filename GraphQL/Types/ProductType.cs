@@ -1,11 +1,15 @@
-﻿using GraphQL.Types;
+﻿using GraphQL.DataLoader;
+using GraphQL.Types;
 using GraphqlDemo.Data.Entities;
+using GraphqlDemo.Repositories;
+
 
 namespace GraphqlDemo.GraphQL.Types
 {
     public class ProductType: ObjectGraphType<Product>
     {
-        public ProductType()
+        public ProductType(ProductReviewRepository reviewRepository, 
+                IDataLoaderContextAccessor dataLoaderAccessor)
         {
             Field(x=>x.Id);
             Field(x=>x.Name);
@@ -16,6 +20,15 @@ namespace GraphqlDemo.GraphQL.Types
             Field(t => t.Rating).Description("The (max 5) star customer rating");
             Field(t => t.Stock);
             Field<ProductTypeEnumType>("Type", "The type of product");
+
+            Field<ListGraphType<ProductReviewType>>(
+                "reviews",
+                resolve: ctx => {
+                    var loader = dataLoaderAccessor.Context.GetOrAddCollectionBatchLoader<int,ProductReview>(
+                        "GetReviewsByProductId",reviewRepository.GetForProducts);                    
+                    return loader.LoadAsync(ctx.Source.Id);
+                }
+            );
         }
     }
 }

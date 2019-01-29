@@ -47,16 +47,24 @@ namespace GraphqlDemo
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
 
-            services.AddDbContext<GraphqlDbContext>(options =>
-                options.UseSqlServer(_config.GetConnectionString("GraphqlDemo")));
+            // Use SQL server when using windows
+
+            // services.AddDbContext<GraphqlDbContext>(options =>
+            //     options.UseSqlServer(_config.GetConnectionString("GraphqlDemo")));
             
+            // Use Sql lite when using Mac
+            services.AddDbContext<GraphqlDbContext>(options=>
+                options.UseSqlite(_config.GetConnectionString("GraphqlDemoLite")));
+
             services.AddScoped<ProductRepository>();
+            services.AddScoped<ProductReviewRepository>();
 
             services.AddScoped<IDependencyResolver>(s => new FuncDependencyResolver(s.GetRequiredService));
             services.AddScoped<GraphqlDemoSchema>();
 
-            services.AddGraphQL(o => { o.ExposeExceptions = true; })
-                    .AddGraphTypes(ServiceLifetime.Scoped);
+            services.AddGraphQL(o => { o.ExposeExceptions = false; })
+                    .AddGraphTypes(ServiceLifetime.Scoped)
+                    .AddDataLoader();
 
         }
 

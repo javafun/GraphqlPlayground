@@ -1,8 +1,9 @@
 ﻿using GraphQL.Types;
+using GraphqlDemo.Data;
 
 namespace GraphqlDemo.GraphQL.Types
 {
-    public class ProductTypeEnumType:EnumerationGraphType<Data.ProductType>
+    public class ProductTypeEnumType:EnumerationGraphType<ProductTypeEnum>
     {
         public ProductTypeEnumType()
         {

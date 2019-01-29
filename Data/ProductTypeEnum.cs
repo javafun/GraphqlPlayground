@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GraphqlDemo.Data
 {
-    public enum ProductType
+    public enum ProductTypeEnum
     {
         Boots,
         ClimbingGear,

@@ -3,14 +3,16 @@ using System;
 using GraphqlDemo.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace GraphqlDemo.Migrations
 {
     [DbContext(typeof(GraphqlDbContext))]
-    partial class GraphqlDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190129080707_AddProductReview")]
+    partial class AddProductReview
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -68,7 +70,7 @@ namespace GraphqlDemo.Migrations
             modelBuilder.Entity("GraphqlDemo.Data.Entities.ProductReview", b =>
                 {
                     b.HasOne("GraphqlDemo.Data.Entities.Product", "Product")
-                        .WithMany("ProductReviews")
+                        .WithMany()
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade);
                 });
